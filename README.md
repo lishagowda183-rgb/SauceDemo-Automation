@@ -1,6 +1,8 @@
 # SauceDemo Selenium Automation
 
-A Selenium + PyTest automation framework for testing the login functionality of the SauceDemo web application.
+A Selenium + PyTest automation framework for testing the SauceDemo web application.
+
+The project demonstrates UI automation using the Page Object Model (POM), explicit waits, reusable WebDriver fixtures, positive and negative test scenarios, failure screenshots, and HTML test reporting.
 
 ## 🚀 Tech Stack
 
@@ -12,25 +14,39 @@ A Selenium + PyTest automation framework for testing the login functionality of 
 - PyTest HTML Reports
 - Git & GitHub
 
-## 🧪 Test Scenarios
+## 🧪 Automated Test Scenarios
 
-The project currently covers three login scenarios:
+The project currently includes 5 automated test scenarios:
 
 ### 1. Valid Login
 
-- Username: `standard_user`
-- Password: `secret_sauce`
+- Logs in using a valid standard user.
 - Verifies successful navigation to the inventory page.
 
 ### 2. Invalid Password
 
 - Uses a valid username with an incorrect password.
-- Verifies the appropriate login error message.
+- Verifies the login error message.
 
 ### 3. Locked-Out User
 
-- Uses the SauceDemo locked-out account.
+- Attempts to log in using a locked-out user.
 - Verifies that the user is prevented from logging in.
+
+### 4. Add Product to Cart
+
+- Logs in as a standard user.
+- Adds the Sauce Labs Backpack to the cart.
+- Navigates to the cart.
+- Verifies the product name.
+
+### 5. Checkout Flow
+
+- Logs in as a standard user.
+- Adds a product to the cart.
+- Opens the cart and starts checkout.
+- Enters customer information.
+- Verifies the Checkout Overview page.
 
 ## 📁 Project Structure
 
@@ -39,81 +55,85 @@ SauceDemo-Automation/
 │
 ├── pages/
 │   ├── __init__.py
-│   └── login_page.py
+│   ├── login_page.py
+│   ├── inventory_page.py
+│   ├── cart_page.py
+│   └── checkout_page.py
 │
 ├── tests/
 │   └── test_login.py
 │
+├── screenshots/
+├── reports/
 ├── conftest.py
 ├── requirements.txt
 ├── .gitignore
 └── README.md
-```
 
-## ⚙️ Setup
+⚙️ Setup
 
 Clone the repository:
 
-```bash
 git clone https://github.com/lishagowda183-rgb/SauceDemo-Automation.git
-```
 
 Navigate to the project:
 
-```bash
 cd SauceDemo-Automation
-```
 
-Install the required dependencies:
+Install the dependencies:
 
-```bash
 pip install -r requirements.txt
-```
-
-## ▶️ Run Tests
+▶️ Run Tests
 
 Run all tests:
 
-```bash
 pytest
-```
 
 Generate an HTML test report:
 
-```bash
 pytest --html=reports/report.html --self-contained-html
-```
-
-## 🏗️ Framework Design
+🏗️ Framework Design
 
 The project follows the Page Object Model (POM).
 
-- `pages/login_page.py` contains page elements and login actions.
-- `tests/test_login.py` contains the automated test cases.
-- `conftest.py` manages the Selenium WebDriver fixture.
-- Explicit waits are used for reliable element interaction.
-- PyTest is used for test execution and assertions.
+login_page.py handles login elements and actions.
+inventory_page.py handles product and cart interactions.
+cart_page.py handles cart validation.
+checkout_page.py handles checkout actions and validation.
+test_login.py contains the automated test scenarios.
+conftest.py manages the Selenium WebDriver fixture.
+Explicit waits are used for reliable element interaction.
+Assertions are used to validate expected application behavior.
+📸 Failure Screenshots
 
-## 📊 Test Coverage
+The framework automatically captures a screenshot when a test fails.
 
-The current automation covers:
+Screenshots are stored in:
 
-- Positive login testing
-- Invalid credentials
-- Locked-out user validation
-- Login error message validation
-- Successful page navigation
+screenshots/
 
-## 🔮 Future Improvements
+The screenshots directory is excluded from Git using .gitignore.
 
-- Add inventory page automation
-- Add shopping cart test cases
-- Add checkout flow automation
-- Add failure screenshots
-- Add CI/CD using GitHub Actions
-- Expand test coverage
+📊 Test Coverage
 
-## 👩‍💻 Author
+Current automation covers:
+
+Positive login testing
+Invalid credentials
+Locked-out user validation
+Product selection
+Cart validation
+Checkout flow
+Checkout overview validation
+Failure screenshot capture
+HTML test reporting
+🔮 Future Improvements
+Add checkout completion validation
+Expand product and cart test coverage
+Add more negative checkout scenarios
+Add CI/CD using GitHub Actions
+Expand automated reporting
+👩‍💻 Author
 
 Lisha Gowda
 
